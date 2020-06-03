@@ -40,6 +40,10 @@ target_include_directories(
     vendor/mini_chromium
 )
 
+set_target_properties(mini_chromium PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 add_library(
     getopt
     STATIC
@@ -59,6 +63,10 @@ target_include_directories(
     getopt
     PUBLIC
     vendor/crashpad/third_party/getopt
+)
+
+set_target_properties(getopt PROPERTIES
+    DEBUG_POSTFIX "d"
 )
 
 add_library(
@@ -81,6 +89,10 @@ target_include_directories(
     crashpad_compat
     PUBLIC
     vendor/crashpad/compat/win
+)
+
+set_target_properties(crashpad_compat PROPERTIES
+    DEBUG_POSTFIX "d"
 )
 
 add_library(
@@ -107,6 +119,10 @@ target_link_libraries(
     crashpad_tools
     PUBLIC
     mini_chromium
+)
+
+set_target_properties(crashpad_tools PROPERTIES
+    DEBUG_POSTFIX "d"
 )
 
 add_library(
@@ -193,6 +209,10 @@ target_include_directories(
     "$<TARGET_FILE_DIR:zlibstatic>/../"
 )
 
+set_target_properties(crashpad_util PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 add_library(
     crashpad_client
     STATIC
@@ -226,6 +246,11 @@ target_link_libraries(
     crashpad_compat
     crashpad_util
 )
+
+set_target_properties(crashpad_client PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 
 add_library(
     crashpad_minidump
@@ -277,6 +302,11 @@ target_link_libraries(
     crashpad_compat
     crashpad_util
 )
+
+set_target_properties(crashpad_minidump PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 
 add_library(
     crashpad_snapshot
@@ -339,6 +369,10 @@ target_link_libraries(
     powrprof
 )
 
+set_target_properties(crashpad_snapshot PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 add_executable(
     crashpad_handler
     WIN32
@@ -378,6 +412,10 @@ target_link_libraries(
     getopt
 )
 
+set_target_properties(crashpad_handler PROPERTIES
+    DEBUG_POSTFIX "d"
+)
+
 # Make a .com file copy from the .exe with subsystem console
 add_custom_command(
     TARGET crashpad_handler POST_BUILD
@@ -405,3 +443,4 @@ set_source_files_properties(
     PROPERTIES
     COMPILE_FLAGS "/safeseh"
 )
+
